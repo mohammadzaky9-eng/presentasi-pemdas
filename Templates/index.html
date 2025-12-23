@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Analisis DM Jawa Barat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .card { margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .table-responsive { max-height: 400px; overflow-y: auto; }
+        .chart-img { width: 100%; height: auto; border-radius: 8px; }
+        header { background: #007bff; color: white; padding: 20px 0; margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+
+<header class="text-center">
+    <h1>Dashboard Analisis Penderita Diabetes Melitus</h1>
+    <p>Provinsi Jawa Barat (Data Pandas ke Flask Web)</p>
+</header>
+
+<div class="container">
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="card-title mb-0">Sampel Data Hasil Pengolahan (Pandas)</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted small">*Menampilkan 10 baris pertama hasil filtering/sorting.</p>
+                    <div class="table-responsive">
+                        {{ tabel | safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">Tren Penderita DM per Tahun [Soal 21]</h5>
+                </div>
+                <div class="card-body text-center">
+                    <img src="data:image/png;base64,{{ plot_tren }}" class="chart-img" alt="Grafik Tren">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="card-title mb-0">Proporsi Kategori DM 2019 [Soal 23]</h5>
+                </div>
+                <div class="card-body text-center">
+                    <img src="data:image/png;base64,{{ plot_pie }}" class="chart-img" alt="Grafik Pie">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="card-title mb-0">10 Kabupaten/Kota Tertinggi (2019) [Soal 22]</h5>
+                </div>
+                <div class="card-body text-center">
+                    <img src="data:image/png;base64,{{ plot_top10 }}" class="chart-img" alt="Grafik Bar">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-5">
+        <div class="col-12">
+            <div class="card border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="card-title mb-0">Kesimpulan & Analisis [Soal 25]</h5>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Kabupaten Tertinggi:</strong> Berdasarkan data, Kabupaten Bogor secara konsisten memiliki jumlah penderita tertinggi.</li>
+                        <li><strong>Tren:</strong> Secara umum, jumlah penderita DM di Jawa Barat cenderung mengalami kenaikan setiap tahunnya.</li>
+                        <li><strong>Sebaran Kategori:</strong> Sebagian besar penderita terkonsentrasi di wilayah dengan kategori "Tinggi".</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer class="text-center py-4 text-muted">
+    <p>&copy; 2024 Tugas Python Flask - Kelompok Data Jabar</p>
+</footer>
+
+</body>
+</html>
